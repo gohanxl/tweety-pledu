@@ -57,3 +57,36 @@ code {
 .content .by {
   font-weight: bold;
 }
+
+#name, #tweet-content{
+  color: lightblue;
+  list-style-type: none;
+}
+
+#tweet-content{
+  margin-top: 5px;
+}
+
+#name{
+  font-weight: bold;
+  display: block;
+}
+
+#profile-pic{
+  width: 48px;
+  height: 48px;
+  float: right;
+  margin: 5px;
+}
+
+.col-md-2{
+  height: 60px;
+}
+
+.col-md-10{
+  height: 60px;
+}
+
+#fila-for{
+  margin: 5px;
+}
