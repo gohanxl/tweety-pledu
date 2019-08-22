@@ -9,6 +9,7 @@ const socketio = require('socket.io');
 const server = app.listen(8080);
 const io = socketio.listen(server);
 
+
 app.use(express.static("./public"));
 app.use("/", routes(io));
 

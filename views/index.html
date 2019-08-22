@@ -8,8 +8,19 @@
     <img
       src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg"
     /><br />
-    <b>Your Name</b><br />
-    100 followers
+    <b>Your Name</b><br/>
+    100 followers 
+    <br><br>
+    
+    {% if showForm %}
+      <form action="/tweets" method="POST">
+        <label for="name_field">Name:</label><br>
+        <input name="name" type="text" value="{{ twittero }}" id="name_field" /><br><br>
+        <label for="text_field">Text:</label><br>
+        <input name="text" type="text" id="text_field" /><br><br>
+        <input type="submit" value="Submit" id="submitBtn" />
+      </form>
+    {% endif %}
   </div>
   <div class="col-md-9">
     <!-- display tweets here -->
@@ -19,22 +30,16 @@
         <img src="https://i.imgur.com/mfwYfyO.png" alt="" id="profile-pic" />
       </div>
       <div class="col-md-10">
-        <span id="name"><a href="/users/{{tweet.name}}">{{tweet.name}}</a></span>
-        <span id="tweet-content"><a href="/tweets/{{tweet.id}}">{{ tweet.content }}</a></span>
+        <span id="name"
+          ><a href="/users/{{ tweet.name }}">{{ tweet.name }}</a></span
+        >
+        <span id="tweet-content"
+          ><a href="/tweets/{{ tweet.id }}">{{ tweet.content }}</a></span
+        >
       </div>
     </div>
     {% endfor %}
   </div>
 </div>
-
-{% if showForm %}
-  <form action="/tweets" method="POST">
-    <label for="name_field">Name:</label>
-    <input name="name" type="text" value="JESUS TU ME ESCUCHAAAAS?" id="name_field"/>
-    <label for="text_field">Text:</label>
-    <input name="text" type="text" id="text_field" style="width: 350px;" />
-    <input type="submit" value="Submit" />
-  </form>
-{% endif %}
 
 {% endblock %}
