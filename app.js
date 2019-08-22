@@ -6,9 +6,11 @@ const http = require("http");
 const routes = require("./routes/index.js");
 const bodyParser = require("body-parser");
 const socketio = require('socket.io');
+const server = app.listen(8080);
+const io = socketio.listen(server);
 
-app.use(express.static("public"));
-app.use("/", routes);
+app.use(express.static("./public"));
+app.use("/", routes(io));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -57,5 +59,4 @@ app.get("/special*", function(req, res) {
   res.render("index", { people: title, people: people });
 });*/
 
-const server = app.listen(8080);
-const io = socketio.listen(server);
+
