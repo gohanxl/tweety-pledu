@@ -14,15 +14,27 @@
   <div class="col-md-9">
     <!-- display tweets here -->
     {% for tweet in tweets %}
-    <div class="row" id="fila-for">
-      <div class="col-md-2"><img src="https://i.imgur.com/mfwYfyO.png" alt="" id="profile-pic"></div>
+    <div class="row fila-for">
+      <div class="col-md-2">
+        <img src="https://i.imgur.com/mfwYfyO.png" alt="" id="profile-pic" />
+      </div>
       <div class="col-md-10">
-      <span id="name">{{ tweet.name }}</span>
-      <span id="tweet-content">{{ tweet.content }}</span>
+        <span id="name"><a href="/users/{{tweet.name}}">{{tweet.name}}</a></span>
+        <span id="tweet-content"><a href="/tweets/{{tweet.id}}">{{ tweet.content }}</a></span>
+      </div>
     </div>
-    </div>
-      {% endfor %}
+    {% endfor %}
   </div>
 </div>
+
+{% if showForm %}
+  <form action="/tweets" method="POST">
+    <label for="name_field">Name:</label>
+    <input name="name" type="text" value="JESUS TU ME ESCUCHAAAAS?" id="name_field"/>
+    <label for="text_field">Text:</label>
+    <input name="text" type="text" id="text_field" style="width: 350px;" />
+    <input type="submit" value="Submit" />
+  </form>
+{% endif %}
 
 {% endblock %}
