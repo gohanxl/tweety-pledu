@@ -1,15 +1,10 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const router = express.Router();
 // Se puede usar solo una linea: const router = require('express').Router();
 const tweetBank = require("../tweetyBank");
 
 module.exports = function(io) {
   // parse application/x-www-form-urlencoded
-  router.use(bodyParser.urlencoded({ extended: false }));
-
-  // parse application/json
-  router.use(bodyParser.json());
 
   router.get("/", function(req, res) {
     let tweets = tweetBank.list();
@@ -32,9 +27,9 @@ module.exports = function(io) {
   router.post("/tweets", function(req, res) {
     var name = req.body.name;
     var text = req.body.text;
-    tweetBank.add(name, text);
     var newTweet = { name: name, text: text };
-    io.sockets.emit("newTweet", { newTweet });
+    tweetBank.add(name, text);
+    io.sockets.emit('newTweet',  newTweet );
     res.redirect("/");
   });
 

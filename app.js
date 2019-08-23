@@ -9,15 +9,14 @@ const socketio = require('socket.io');
 const server = app.listen(8080);
 const io = socketio.listen(server);
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
 app.use(express.static("./public"));
 app.use("/", routes(io));
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// parse application/json
-app.use(bodyParser.json());
 
 /*var myLogger = function(req, res, next) {
   console.log("LOGGED");
